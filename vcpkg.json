@@ -1,0 +1,13 @@
+{
+  "name": "nyu-amba",
+  "version": "1.0.0",
+  "description": "NYU Processor Design's AMBA Implementation",
+  "homepage": "https://github.com/NYU-Processor-Design/nyu-amba",
+  "maintainers": [
+    "Vito Gamberini <vito@gamberini.email>"
+  ],
+  "license": "CC0-1.0",
+  "dependencies": [
+    "nyu-cmake"
+  ]
+}
