@@ -1,2 +1,2 @@
-add_subdirectory(interfaces)
-add_subdirectory(devices)
+add_subdirectory(ahb)
+add_subdirectory(apb)
