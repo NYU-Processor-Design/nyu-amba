@@ -1,5 +1,5 @@
 module SimpleDecoder_tl #(
-  AddrWidth = 32
+  AddrWidth = 32,
   PrphNum = 2
 ) (
   input clk,
