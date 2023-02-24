@@ -6,8 +6,8 @@
   
   @param DataWidth     bit-width of data transfers
   @param AddrWidth     bit-width of addresses
-  @param HBurstWidth   bit-width of burst controller
-  @param HProtWidth    bit-width of protection signal controller
+  @param burstWidth   bit-width of burst controller
+  @param protWidth    bit-width of protection signal controller
   
   @input clk      clock
   @input nReset   active-low-reset
@@ -33,17 +33,17 @@
 interface AHBCommon_if #(
   DataWidth = 32,
   AddrWidth = 32,
-  HBurstWidth = 3,
-  HProtWidth = 4
+  burstWidth = 3,
+  protWidth = 4
 ) (
   input clk,
   input nReset
 );
   // Manager signals
   logic [AddrWidth - 1:0] addr;
-  logic [HBurstWidth - 1:0] burst = 4'h1;
+  logic [burstWidth - 1:0] burst;
   logic mastLock;
-  logic [HProtWidth - 1:0] prot = 4'h3;
+  logic [protWidth - 1:0] prot;
   logic [3:0] size;
   logic nonSec;
   logic excl;
