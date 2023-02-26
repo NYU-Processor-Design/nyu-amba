@@ -4,9 +4,8 @@
   @note See https://developer.arm.com/documentation/ihi0011/a/AMBA-AHB
         and Ch 1 and 2 of AMBA Protocol Spec.
   
-  @param DataWidth     bit-width of data transfers
-  @param AddrWidth     bit-width of addresses
-  @param burstWidth   bit-width of burst controller
+  @param DataWidth    bit-width of data transfers
+  @param AddrWidth    bit-width of addresses
   @param protWidth    bit-width of protection signal controller
   
   @input clk      clock
@@ -33,7 +32,6 @@
 interface AHBCommon_if #(
   DataWidth = 32,
   AddrWidth = 32,
-  burstWidth = 3,
   protWidth = 4
 ) (
   input clk,
@@ -41,7 +39,7 @@ interface AHBCommon_if #(
 );
   // Manager signals
   logic [AddrWidth - 1:0] addr;
-  logic [burstWidth - 1:0] burst;
+  logic [2:0] burst;
   logic mastLock;
   logic [protWidth - 1:0] prot;
   logic [3:0] size;
