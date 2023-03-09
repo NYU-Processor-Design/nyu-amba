@@ -25,7 +25,7 @@ now.
 - Signals back to the master for success, failure, or data transfer await
 
 #### MUX
-- Routes the read data and response signals to from the subordinates 
+- Routes the read data and response signals from the subordinates 
   to the master
 
 #### Decoder
