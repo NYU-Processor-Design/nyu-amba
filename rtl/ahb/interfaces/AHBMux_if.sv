@@ -5,7 +5,7 @@
 
   @param DataWidth  bit-width of data transfers
 
-  @logic rData    read data from Prph -> Mux
+  @logic rData    read data from Subordinate -> Mux
   @logic readyOut if previous transfer in complete
   @logic resp     status of transfer
 */
@@ -17,7 +17,7 @@ interface AHBMux_if #(
   logic readyOut;
   logic resp;
 
-  modport prph(output rData, output readyOut, output resp);
+  modport subordinate(output rData, output readyOut, output resp);
 
   modport mux(input rData, input readyOut, input resp);
 endinterface
