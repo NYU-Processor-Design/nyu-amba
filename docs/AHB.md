@@ -57,10 +57,12 @@ The AHB requires a many components to work efficiently and high-performancey.
   - Since RISC-V is little endian, we use that
 
 - In the case of read transfers (using `rdata[31:0]`), the subordinate has to 
+  provide valid data when a transfer completes with an `okay` response; other
+  responses don't require valid data
 
 ### MUX
-- Routes the read data and response signals to from the subordinates 
-  to the master
+- Routes the read data and response signals to and from the subordinates 
+  to the manager
 
 - Each subordinate will have a unique input
 
@@ -104,8 +106,8 @@ same "phase" of the bus (think of this as adding `nop`'s in pipelined E20;
 - In case an SoC does not contain a completely filled memory map (which is very
   likely early on with us), a default subordinate must be implemented to 
   provide a response when any of the non-existent address locations are accessed
-  - **Non-sequential or sequential transfers:** Respond error
-  - **Idle or busy transfers:** Zero-wait state okay response
+  - **Non-sequential or sequential transfers:** `error` response
+  - **Idle or busy transfers:** Zero-wait-state `okay` response
   - This functionality will be implemented as part of the decoder
 
 ## Transfer Commencement
@@ -126,7 +128,7 @@ same "phase" of the bus (think of this as adding `nop`'s in pipelined E20;
 
 ## Transfer Responses
 - A subordinate shows the status using the response signals `resp[1:0]` after
-  he manager has started the transfer
+  the manager has started the transfer
   - Think of this as a real-time status monitor
 
 - Signals:
@@ -175,6 +177,6 @@ The `ready` signal identifies the completeness of the transfer
 - High: Transfer completed successfully
 
 **Note:** Transfer responses and transfer completion blend together, so these 
-two sections should really comprehended as one. We have them separated to draw
+two sections should really be comprehended as one. We have them separated to draw
 a firm difference between what is considered "complete", and, because responses
 also happen regardless of completeness.
