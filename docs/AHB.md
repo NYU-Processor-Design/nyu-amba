@@ -57,10 +57,12 @@ The AHB requires a many components to work efficiently and high-performancey.
   - Since RISC-V is little endian, we use that
 
 - In the case of read transfers (using `rdata[31:0]`), the subordinate has to 
+  provide valid data when a transfer completes with an `okay` response; other
+  responses don't require valid data
 
 ### MUX
-- Routes the read data and response signals from the subordinates 
-  to the master
+- Routes the read data and response signals to and from the subordinates 
+  to the manager
 
 - Each subordinate will have a unique input
 
@@ -103,7 +105,7 @@ same "phase" of the bus (think of this as adding `nop`'s in pipelined E20;
 
 - In case an SoC does not contain a completely filled memory map (which is very
   likely early on with us), a default subordinate must be implemented to 
-  provide a response (see [Transfer Responses](#transfer-responses)) when any of the non-existent address locations are accessed
+  provide a response when any of the non-existent address locations are accessed
   - **Non-sequential or sequential transfers:** `error` response
   - **Idle or busy transfers:** Zero-wait-state `okay` response
   - This functionality will be implemented as part of the decoder

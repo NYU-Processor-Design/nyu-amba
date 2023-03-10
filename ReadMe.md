@@ -22,11 +22,11 @@ now.
 #### Subordinate
 - Responds to the read/write operation from the manager within a given 
   address space
-- Signals back to the master for success, failure, or data transfer await
+- Signals back to the manager for success, failure, or data transfer await
 
 #### MUX
-- Routes the read data and response signals from the subordinates 
-  to the master
+- Routes the read data and response signals to and from the subordinates 
+  to the manager
 
 #### Decoder
 - Decodes the address of each transfer

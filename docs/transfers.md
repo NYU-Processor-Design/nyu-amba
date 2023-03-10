@@ -35,7 +35,7 @@ In a simple transfer with no wait states:
   rising edge
 
 - After that, the subordinate will start to drive the response which is sampled
-  by the master on the third rising edge of the clock
+  by the manager on the third rising edge of the clock
 
 ## Burst Transfers
 - Burst transfers happen when you move data repeatedly using the same state as 
