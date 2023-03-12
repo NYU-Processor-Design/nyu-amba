@@ -1,3 +1,26 @@
+/**
+  @brief Common signals for a single-manager AMBA 5 APB Interface
+  
+  @note See https://developer.arm.com/documentation/ihi0011/a/AMBA-APB
+        and Ch 1 and 2 of AMBA APB Protocol Spec.
+  
+  @param DataWidth    bit-width of data transfers
+  @param AddrWidth    bit-width of addresses
+  
+  @input clk      clock
+  @input nReset   active-low-reset
+  
+  @logic addr         byte address of the transfer
+  @logic prot         protection control signal (access type information)
+  @logic selector_N   select for the peripheral
+  @logic enable       enable for second and subsequent transfer cycles
+  @logic write        transfer direction, high/write low/read
+  @logic wData        write data from manager to peripherals
+  @logic strb         write strobe
+  @logic ready        indicates completion of previous transfer
+  @logic rData        read data from peripherals to mux
+  @logic slvError     transfer error, high/error low/okay
+ */
 interface APBCommon_if #(
   AddrWidth = 32,
   DataWidth = 32
