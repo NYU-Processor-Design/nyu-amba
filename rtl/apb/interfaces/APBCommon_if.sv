@@ -12,7 +12,7 @@
   
   @logic addr         byte address of the transfer
   @logic prot         protection control signal (access type information)
-  @logic selector_N   select for the peripheral
+  @logic selectors    selector bus for the peripherals, each lane is one prph
   @logic enable       enable for second and subsequent transfer cycles
   @logic write        transfer direction, high/write low/read
   @logic wData        write data from manager to peripherals
@@ -23,15 +23,15 @@
  */
 interface APBCommon_if #(
   AddrWidth = 32,
-  DataWidth = 32
+  DataWidth = 32,
+  PrphNum = 1
 ) (
   input clk,
   input nReset
 );
   logic [AddrWidth - 1:0] addr;
   logic [3:0] prot;
-  logic selector_0;
-  // logic selector_1; // and so on
+  logic [PrphNum - 1:0] selectors;
   logic enable;
   logic write;
   logic [DataWidth - 1:0] wData;
