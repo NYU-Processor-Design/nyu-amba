@@ -17,4 +17,13 @@ endif()
 
 project(nyu-amba VERSION 1.0.0)
 
-add_subdirectory(dv)
+find_package(nyu-cmake CONFIG REQUIRED)
+
+add_library(amba INTERFACE)
+
+add_subdirectory(rtl)
+
+if(NYU_BUILD_TESTS)
+  enable_testing()
+  add_subdirectory(dv)
+endif()
