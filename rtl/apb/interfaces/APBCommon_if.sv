@@ -6,6 +6,7 @@
   
   @param DataWidth    bit-width of data transfers
   @param AddrWidth    bit-width of addresses
+  @param PrphNum      number of peripherals
   
   @input clk      clock
   @input nReset   active-low-reset
@@ -39,5 +40,17 @@ interface APBCommon_if #(
   logic ready;
   logic [DataWidth - 1:0] rData;
   logic slvError;
+
+  modport bridge(
+    input clk,
+    input nReset,
+    input rData,
+
+    output selectors,
+    output enable,
+    output addr,
+    output write,
+    output wData
+  );
 
 endinterface
