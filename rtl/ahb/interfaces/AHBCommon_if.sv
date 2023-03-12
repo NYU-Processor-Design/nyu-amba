@@ -1,12 +1,12 @@
 /**
-  @brief Common signals for a single-manager AMBA 5 APB Interface
+  @brief Common signals for a single-manager AMBA 5 AHB Interface
   
   @note See https://developer.arm.com/documentation/ihi0011/a/AMBA-AHB
-        and Ch 1 and 2 of AMBA Protocol Spec.
+        and Ch 1 and 2 of AMBA AHB Protocol Spec.
   
   @param DataWidth    bit-width of data transfers
   @param AddrWidth    bit-width of addresses
-  @param protWidth    bit-width of protection signal controller
+  @param ProtWidth    bit-width of protection signal controller
   
   @input clk      clock
   @input nReset   active-low-reset
@@ -32,7 +32,7 @@
 interface AHBCommon_if #(
   DataWidth = 32,
   AddrWidth = 32,
-  protWidth = 4
+  ProtWidth = 4
 ) (
   input clk,
   input nReset
