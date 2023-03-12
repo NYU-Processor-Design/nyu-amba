@@ -26,7 +26,7 @@
   
   @logic rData      read data from subordinates to mux
   @logic readyOut   indicates completion of transfer
-  @logic resp       transfer status, high/error low/error
+  @logic resp       transfer status
   @logic exOkay     status of exclusive transfer
  */
 interface AHBCommon_if #(
@@ -54,7 +54,7 @@ interface AHBCommon_if #(
   // Subordinate signals
   logic [DataWidth - 1:0] rData;
   logic readyOut;
-  logic resp;
+  logic [1:0] resp;
   logic exOkay;
 
   modport manager(
