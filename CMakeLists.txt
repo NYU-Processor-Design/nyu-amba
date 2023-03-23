@@ -13,9 +13,14 @@ if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
     ${vcpkg_SOURCE_DIR}/scripts/buildsystems/vcpkg.cmake
     CACHE FILEPATH "Vcpkg toolchain file"
   )
+  set(VCPKG_ROOT_DIR ${vcpkg_SOURCE_DIR} CACHE PATH "Vcpkg Root Directory")
 endif()
 
-project(nyu-amba VERSION 1.0.0)
+add_custom_target(UpdateVcpkgBaseline
+  ${VCPKG_ROOT_DIR}/vcpkg x-update-baseline
+)
+
+project(nyu-amba VERSION 0.0.1)
 
 find_package(nyu-cmake CONFIG REQUIRED)
 
@@ -27,3 +32,26 @@ if(NYU_BUILD_TESTS)
   enable_testing()
   add_subdirectory(dv)
 endif()
+
+include(CMakePackageConfigHelpers)
+include(GNUInstallDirs)
+
+nyu_install_sv(
+  EXPORT nyuAmbaTargets
+  TARGETS amba
+  NAMESPACE nyu::
+  EXPORT_DEST ${CMAKE_INSTALL_DATADIR}/nyu-amba
+  SV_DEST ${CMAKE_INSTALL_DATADIR}/nyu-amba/sv
+)
+
+write_basic_package_version_file(
+  ${CMAKE_CURRENT_BINARY_DIR}/nyu-amba-config-version.cmake
+  COMPATIBILITY ExactVersion
+  ARCH_INDEPENDENT
+)
+
+install(FILES
+  ${CMAKE_CURRENT_SOURCE_DIR}/cmake/nyu-amba-config.cmake
+  ${CMAKE_CURRENT_BINARY_DIR}/nyu-amba-config-version.cmake
+  DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/nyu-amba
+)

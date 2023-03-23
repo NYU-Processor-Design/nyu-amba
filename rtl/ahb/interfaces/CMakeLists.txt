@@ -1,11 +1,3 @@
-add_library(AHBInterfaces INTERFACE)
-
-target_sources(AHBInterfaces
-  INTERFACE FILE_SET HEADERS
-  FILES AHBCommon_if.sv AHBMux_if.sv
+nyu_add_sv(amba
+  AHBCommon_if.sv AHBMux_if.sv MemCommon_if.sv
 )
-
-install(TARGETS ${ARG_TARGET} EXPORT ${ARG_TARGET} FILE_SET HEADERS
-DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/nyu/${ARG_TARGET})
-install(EXPORT ${ARG_TARGET} NAMESPACE nyu::
-DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake/${ARG_PACKAGE})
