@@ -32,6 +32,9 @@ interface MemCommon_if #(
   logic [DataWidth - 1:0] rData;
 
   modport memCtrl(
+    input clk,
+    input nReset,
+
     input addr,
     input wData,
     input write,
