@@ -1,6 +1,6 @@
 {
   "name": "nyu-amba",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "NYU Processor Design's AMBA Implementation",
   "homepage": "https://github.com/NYU-Processor-Design/nyu-amba",
   "maintainers": [

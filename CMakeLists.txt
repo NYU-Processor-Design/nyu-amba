@@ -20,7 +20,7 @@ add_custom_target(UpdateVcpkgBaseline
   ${VCPKG_ROOT_DIR}/vcpkg x-update-baseline
 )
 
-project(nyu-amba VERSION 0.0.1)
+project(nyu-amba VERSION 0.0.2)
 
 find_package(nyu-cmake CONFIG REQUIRED)
 
