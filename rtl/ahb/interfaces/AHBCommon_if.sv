@@ -41,7 +41,7 @@ interface AHBCommon_if #(
   logic [AddrWidth - 1:0] addr;
   logic [2:0] burst;
   logic mastLock;
-  logic [protWidth - 1:0] prot;
+  logic [ProtWidth - 1:0] prot;
   logic [3:0] size;
   logic nonSec;
   logic excl;
