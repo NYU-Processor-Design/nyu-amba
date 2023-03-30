@@ -43,10 +43,10 @@ interface AHBCommon_if #(
   logic [2:0] burst;
   logic mastLock;
   logic [ProtWidth - 1:0] prot;
-  logic [3:0] size;
+  logic [2:0] size;
   logic nonSec;
   logic excl;
-  logic [2:0] trans;
+  logic [1:0] trans;
   logic [DataWidth - 1:0] wData;
   logic [DataWidth/8 - 1:0] wStrb;
   logic write;
