@@ -25,6 +25,7 @@
   @logic ready      indicates completion of previous transfer
   
   @logic rData      read data from subordinates to mux
+  @logic sel        selects the subordinate
   @logic readyOut   indicates completion of transfer
   @logic resp       transfer status
   @logic exOkay     status of exclusive transfer
@@ -53,6 +54,7 @@ interface AHBCommon_if #(
 
   // Subordinate signals
   logic [DataWidth - 1:0] rData;
+  logic sel;
   logic readyOut;
   logic [1:0] resp;
   logic exOkay;
@@ -89,7 +91,7 @@ interface AHBCommon_if #(
     input trans,
     input mastLock,
     input ready,
-
+    input sel,
     input wData,
 
     output readyOut,
