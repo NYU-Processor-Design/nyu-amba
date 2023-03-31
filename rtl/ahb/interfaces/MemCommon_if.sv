@@ -43,4 +43,12 @@ interface MemCommon_if #(
     output rData
   );
 
+  modport subordinate(
+    input rData,
+    input resp,
+
+    output write,
+    output addr,
+    output wData
+  );
 endinterface
