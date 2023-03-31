@@ -45,11 +45,10 @@ for peripherals
   a suitable format for peripherals on the APB.
 
 ## Further Reading
-Rishyak's notes about each component are in the [docs directory](https://github.com/NYU-Processor-Design/nyu-amba/tree/main/docs).
+Rishyak's notes about each component are in the [docs directory](docs/).
 
 However, if you prefer to read from source[^note]:
-- [Official AMBA AHB specification](https://developer.arm.com/documentation/ihi0011/a/AMBA-AHB)
-- [Official AMBA APB specification](https://developer.arm.com/documentation/ihi0011/a/AMBA-APB)
+- [Official AMBA specification](docs/amba_spec.pdf)
 - [Official ARM documentation page](https://developer.arm.com/documentation)
 
 <!-- Footnotes -->
