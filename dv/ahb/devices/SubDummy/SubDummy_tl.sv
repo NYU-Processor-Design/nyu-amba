@@ -1,10 +1,13 @@
-module SubDummy_tl (
-    input logic clk
+module SubDummy_tl #(
+  AddrWidth = 32,
+  DataWidth = 32
+) (
+  input clk,
+  input nReset
 );
-logic nReset;
 
-AHBCommon_if ahb_com_if ( clk, nReset );
+  AHBCommon_if #(DataWidth, AddrWidth) ahb (clk, nReset);
 
-SubDummy sd ( ahb_com_if.subordinate );
+  SubDummy sub (.*);
 
 endmodule
