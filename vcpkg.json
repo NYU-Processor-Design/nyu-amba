@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
   "name": "nyu-amba",
   "version": "0.0.2",
   "description": "NYU Processor Design's AMBA Implementation",
@@ -10,6 +11,7 @@
   ],
   "license": "CC0-1.0",
   "dependencies": [
-    "nyu-cmake"
+    "nyu-cmake",
+    "catch2"
   ]
 }

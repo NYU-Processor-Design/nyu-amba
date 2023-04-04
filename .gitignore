@@ -1,7 +1,10 @@
 # build files
 build
 
-# Text editor configs
+# testing files
+Testing
+
+# text editor configs
 .vscode
 .idea
 
