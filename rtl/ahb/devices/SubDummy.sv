@@ -13,16 +13,26 @@
   @logic state        State of the subordinate
  */
 
-`include "AHBCommon_pkg.sv"
+// `include "AHBCommon_pkg.sv"
 
 module SubDummy (
+    input logic [3:0] control,
     AHBCommon_if.subordinate ahb
 );
+    // import AHBCommon_pkg::*;
     //Dummy Memory and Signals for testing
     logic [ahb.DataWidth-1:0] mem [ahb.AddrWidth-1:0];
 
     logic [1:0] state;
+
+
+    typedef enum logic [3:0] {
+        CONTROL_OK,
+        CONTROL_DELAY,
+        CONTROL_ERROR
+    } Control; // Dummy control signal for testing
     
+
     always_ff @(posedge ahb.clk or negedge ahb.nReset) begin 
         if (~ahb.nReset) begin
             ahb.readyOut <= 1'b1;
@@ -35,7 +45,7 @@ module SubDummy (
             end else begin
                 case (ahb.trans)
                     //Manager is idle or busy
-                    AHBCommon_pkg::TRANS_IDLE, AHBCommon_pkg::TRANS_BUSY: begin
+                    AHBCommon_pkg::TRANS_IDLE: begin
                         case (state)
                             //Wait until transfer continues or ends
                             AHBCommon_pkg::STATE_IDLE, AHBCommon_pkg::STATE_READ, AHBCommon_pkg::STATE_WRITE: begin
@@ -43,17 +53,21 @@ module SubDummy (
                             end
                             AHBCommon_pkg::STATE_ERROR: begin
                                 //Only set readyOut to 1 if the manager returns to Idle
-                                ahb.readyOut <= ahb.trans == AHBCommon_pkg::TRANS_IDLE;
+                                ahb.readyOut <= 1'b0;
+                                state <= AHBCommon_pkg::STATE_IDLE;
                             end
                         endcase
+                    end
+                    AHBCommon_pkg::TRANS_BUSY: begin
+                        //Doesn't do anything yet
+                        ahb.readyOut <= 1'b1;
                     end
                     //Manager is starting a new transfer
                     AHBCommon_pkg::TRANS_NONSEQ: begin
                         case (state)
-                            //If not currently handling a transfer, start one
-                            AHBCommon_pkg::STATE_IDLE: begin
+                            AHBCommon_pkg::STATE_IDLE, AHBCommon_pkg::STATE_READ, AHBCommon_pkg::STATE_WRITE: begin
                                 //Perform read and writes to modules
-                                if (ahb.write) begin
+                                if (ahb.write && control == CONTROL_OK) begin
                                     mem[ahb.addr] <= ahb.wData;
                                     state <= AHBCommon_pkg::STATE_WRITE;
                                 end else begin
@@ -61,8 +75,7 @@ module SubDummy (
                                     state <= AHBCommon_pkg::STATE_READ;
                                 end
                             end
-                            //If already reading or writing, reset the transfer
-                            AHBCommon_pkg::STATE_READ, AHBCommon_pkg::STATE_WRITE, AHBCommon_pkg::STATE_ERROR: begin
+                            AHBCommon_pkg::STATE_ERROR: begin
                                 state <= AHBCommon_pkg::STATE_IDLE;
                             end
                         endcase
@@ -70,6 +83,28 @@ module SubDummy (
                     AHBCommon_pkg::TRANS_SEQ: begin
                         //Doesn't do anything yet
                         state <= AHBCommon_pkg::STATE_IDLE;
+                    end
+                endcase
+
+                //Set reponse based on control signals
+                case (control)
+                    CONTROL_OK: begin
+                        ahb.readyOut <= 1'b1;
+                        ahb.resp <= AHBCommon_pkg::RESP_OKAY;
+                    end
+                    CONTROL_DELAY: begin
+                        ahb.readyOut <= 1'b0;
+                        ahb.resp <= AHBCommon_pkg::RESP_OKAY;
+                    end
+                    CONTROL_ERROR: begin
+                        ahb.readyOut <= 1'b0;
+                        ahb.resp <= AHBCommon_pkg::RESP_ERROR;
+                        state <= AHBCommon_pkg::STATE_ERROR;
+                    end
+                    default: begin
+                        ahb.readyOut <= 1'b1;
+                        ahb.resp <= AHBCommon_pkg::RESP_ERROR;
+                        state <= AHBCommon_pkg::STATE_ERROR;
                     end
                 endcase
             end 
