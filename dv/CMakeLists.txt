@@ -9,8 +9,6 @@ if(TEST_AHB OR TEST_ALL)
   add_subdirectory(ahb)
 endif()
 
-add_subdirectory(ahb)
-
 nyu_link_sv(tests PRIVATE amba)
 nyu_target_verilate(tests
   TOP_MODULES ${TOP_MODULES}

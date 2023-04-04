@@ -17,7 +17,7 @@ module SubDummy_tl #(
 
   AHBCommon_if #(DataWidth, AddrWidth) ahb (clk, nReset);
 
-  SubDummy sub (control, .*);
+  SubDummy sub (.*);
 
   assign ahb.addr = addr;
   assign ahb.wData = wData;
