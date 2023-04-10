@@ -76,7 +76,7 @@ module SubDummy (
                                 end
                             end
                             AHBCommon_pkg::STATE_ERROR: begin
-                                state <= AHBCommon_pkg::STATE_IDLE;
+                                state <= AHBCommon_pkg::STATE_ERROR;
                             end
                         endcase
                     end

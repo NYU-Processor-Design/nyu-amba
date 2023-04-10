@@ -14,10 +14,14 @@ TEST_CASE("Init") {
   REQUIRE(1 == 1);
 }
 
-TEST_CASE("Single read/write") {
+TEST_CASE("Single read write") {
   VSubDummy_tl dut;
   dut.control = 0;
-  dut.eval();
+  dut.sel = 1;
+  dut.nReset = 0;
+  dut.trans = 0;
+  clock(dut);
+  dut.nReset = 1;
   dut.addr = 0x0;
   dut.wData = 0x1234;
   dut.write = 1;
