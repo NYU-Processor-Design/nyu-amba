@@ -50,7 +50,7 @@ The AHB requires a many components to work efficiently and high-performancey.
 - For transfers lower than the minimum width, the component has to drive the
   appropriate byte lanes
 
-- Burst transfers with a transfer size less than the bus width will have  
+- Burst transfers with a transfer size less than the bus width will have
   different active byte lanes for each beat of the burst
 
 - The active byte lane is dependent on the endianness of the system
