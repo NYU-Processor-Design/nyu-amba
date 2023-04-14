@@ -35,6 +35,12 @@ package AHBCommon_pkg;
     BURST_INCREMENT_16
   } ahb_burst_t;
 
+  typedef enum bit [1:0] {
+    MANAGER_IDLE,
+    MANAGER_ADDR,
+    MANAGER_DATA
+  } ahb_man_state_t;
+
 endpackage
 
 `endif
