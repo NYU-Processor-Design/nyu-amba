@@ -8,14 +8,8 @@ void clock(VSubDummy_tl &dut) {
   dut.eval();
 }
 
-TEST_CASE("Init") {
-  VSubDummy_tl dut;
-  dut.eval();
-  REQUIRE(1 == 1);
-}
-
-TEST_CASE("Single read write") {
-  VSubDummy_tl dut;
+TEST_CASE("SubDummy Single read write") {
+  VSubDummy_tl dut; 
   dut.control = 0;
   dut.sel = 1;
   dut.nReset = 0;
