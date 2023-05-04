@@ -1,5 +1,8 @@
 # NYU AMBA
 
+[![github](https://github.com/NYU-Processor-Design/nyu-amba/actions/workflows/main.yaml/badge.svg)](https://github.com/NYU-Processor-Design/nyu-amba/actions) 
+[![codecov](https://codecov.io/gh/NYU-Processor-Design/nyu-amba/branch/main/graph/badge.svg?token=McspW0gLf4)](https://codecov.io/gh/NYU-Processor-Design/nyu-amba) 
+
 The Advanced Microcontroller Bus Architecture (AMBA) is an open-source standard
 engineered by ARM. It provides specifications for on-chip interconnection and
 management of various functional blocks on the SoC. 
