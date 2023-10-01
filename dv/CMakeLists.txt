@@ -8,6 +8,7 @@ set(TOP_MODULES "")
 
 if(TEST_AHB OR TEST_ALL)
   add_subdirectory(ahb)
+  add_subdirectory(apb)
 endif()
 
 nyu_link_sv(tests PRIVATE amba)

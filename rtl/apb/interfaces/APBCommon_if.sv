@@ -20,37 +20,66 @@
   @logic strb         write strobe
   @logic ready        indicates completion of previous transfer
   @logic rData        read data from peripherals to mux
-  @logic slvError     transfer error, high/error low/okay
+  @logic subError     transfer error, high/error low/okay
  */
 interface APBCommon_if #(
   AddrWidth = 32,
   DataWidth = 32,
+  ProtWidth = 4,
   PrphNum = 1
 ) (
   input clk,
   input nReset
 );
-  logic [AddrWidth - 1:0] addr;
-  logic [3:0] prot;
+  // bridge signals
   logic [PrphNum - 1:0] selectors;
-  logic enable;
-  logic write;
+  logic [AddrWidth - 1:0] addr;
+  logic [ProtWidth - 1:0] prot;
   logic [DataWidth - 1:0] wData;
-  logic [DataWidth/8 - 1:0] strb;
+  logic write;
   logic ready;
+  logic sel;
+  logic enable;
+
+  // peripheral signals
   logic [DataWidth - 1:0] rData;
-  logic slvError;
+  logic readyOut;
+  logic subErr;
 
   modport bridge(
     input clk,
     input nReset,
+
+    input ready,
+    
     input rData,
 
     output selectors,
-    output enable,
     output addr,
     output write,
-    output wData
+    output prot,
+
+    output wData,
+    output sel,
+    output enable
+  );
+
+  modport peripheral(
+    input clk,
+    input nReset,
+
+    input addr,
+    input write,
+    input prot,
+    input ready,
+    input sel,
+    input wData,
+    input enable,
+
+    output readyOut,
+    output subErr,
+
+    output rData
   );
 
 endinterface
