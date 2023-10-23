@@ -1,3 +1,5 @@
+/*verilator coverage_off*/
+
 /**
   @brief Interface between an AMBA 5 multiplexor and a single peripheral
 
@@ -21,3 +23,5 @@ interface AHBMux_if #(
 
   modport mux(input rData, input readyOut, input resp);
 endinterface
+
+/*verilator coverage_on*/

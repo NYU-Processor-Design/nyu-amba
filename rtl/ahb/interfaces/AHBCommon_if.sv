@@ -1,16 +1,18 @@
+/*verilator coverage_off*/
+
 /**
   @brief Common signals for a single-manager AMBA 5 AHB Interface
-  
+
   @note See https://developer.arm.com/documentation/ihi0011/a/AMBA-AHB
         and Ch 1 and 2 of AMBA AHB Protocol Spec.
-  
+
   @param DataWidth    bit-width of data transfers
   @param AddrWidth    bit-width of addresses
   @param ProtWidth    bit-width of protection signal controller
-  
+
   @input clk      clock
   @input nReset   active-low-reset
-  
+
   @logic addr       byte address of the transfer
   @logic burst      number of transfers in the burst
   @logic mastLock   if current transfer is part of a locked sequence
@@ -23,7 +25,7 @@
   @logic wStrb      write strobe
   @logic write      transfer direction, high/write low/read
   @logic ready      indicates completion of previous transfer
-  
+
   @logic rData      read data from subordinates to mux
   @logic sel        selects the subordinate
   @logic readyOut   indicates completion of transfer
@@ -31,12 +33,12 @@
   @logic exOkay     status of exclusive transfer
  */
 interface AHBCommon_if #(
-  DataWidth = 32,
-  AddrWidth = 32,
-  ProtWidth = 4
+    DataWidth = 32,
+    AddrWidth = 32,
+    ProtWidth = 4
 ) (
-  input clk,
-  input nReset
+    input clk,
+    input nReset
 );
   // Manager signals
   logic [AddrWidth - 1:0] addr;
@@ -60,62 +62,62 @@ interface AHBCommon_if #(
   logic exOkay;
 
   modport manager(
-    input clk,
-    input nReset,
+      input clk,
+      input nReset,
 
-    input ready,
-    input resp,
-    
-    input rData,
+      input ready,
+      input resp,
 
-    output addr,
-    output write,
-    output size,
-    output burst,
-    output prot,
-    output trans,
-    output mastLock,
+      input rData,
 
-    output wData
+      output addr,
+      output write,
+      output size,
+      output burst,
+      output prot,
+      output trans,
+      output mastLock,
+
+      output wData
   );
 
   modport subordinate(
-    input clk,
-    input nReset,
+      input clk,
+      input nReset,
 
-    input addr,
-    input write,
-    input size,
-    input burst,
-    input prot,
-    input trans,
-    input mastLock,
-    input ready,
-    input sel,
-    input wData,
+      input addr,
+      input write,
+      input size,
+      input burst,
+      input prot,
+      input trans,
+      input mastLock,
+      input ready,
+      input sel,
+      input wData,
 
-    output readyOut,
-    output resp,
+      output readyOut,
+      output resp,
 
-    output rData
+      output rData
   );
 
   modport mux(
-    input clk,
-    input nReset,
-
-    output resp,
-    output exOkay,
-    output ready,
-    output rData
+      input clk,  //
+      input nReset,
+      output resp,
+      output exOkay,
+      output ready,
+      output rData
   );
 
   modport decoder(
-    input clk,
-    input nReset,
-
-    input addr,
-    input nonSec
+      input clk,  //
+      input nReset,
+      input addr,
+      input nonSec
   );
 
 endinterface
+
+/*verilator coverage_on*/

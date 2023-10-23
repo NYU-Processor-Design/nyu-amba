@@ -1,8 +1,10 @@
+/*verilator coverage_off*/
+
 /**
-  @brief Common signals for a memory controller 
-  
+  @brief Common signals for a memory controller
+
   @note See https://github.com/NYU-Processor-Design/nyu-mem
-  
+
   @param DataWidth    bit-width of data transfers
   @param AddrWidth    bit-width of addresses
 
@@ -12,16 +14,16 @@
   @logic addr       byte address of the transfer
   @logic wData      write data from memory to subordinates
   @logic write      transfer direction, high/write low/read
-  
+
   @logic resp       response bus
   @logic rData      read data from subordinates to memory
 */
 interface MemCommon_if #(
-  DataWidth = 32,
-  AddrWidth = 32
+    DataWidth = 32,
+    AddrWidth = 32
 ) (
-  input clk,
-  input nReset
+    input clk,
+    input nReset
 );
 
   logic [AddrWidth - 1:0] addr;
@@ -32,23 +34,24 @@ interface MemCommon_if #(
   logic [DataWidth - 1:0] rData;
 
   modport memCtrl(
-    input clk,
-    input nReset,
+      input clk,
+      input nReset,
 
-    input addr,
-    input wData,
-    input write,
+      input addr,
+      input wData,
+      input write,
 
-    output resp,
-    output rData
+      output resp,
+      output rData
   );
 
   modport subordinate(
-    input rData,
-    input resp,
-
-    output write,
-    output addr,
-    output wData
+      input rData,  //
+      input resp,
+      output write,
+      output addr,
+      output wData
   );
 endinterface
+
+/*verilator coverage_on*/

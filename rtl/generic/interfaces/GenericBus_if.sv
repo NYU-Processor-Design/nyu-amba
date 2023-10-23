@@ -1,3 +1,5 @@
+/*verilator coverage_off*/
+
 /**
   @brief Generic bus protocol, suitable to be used with a variety of different
     bus interfaces
@@ -96,3 +98,5 @@ interface GenericBus_if #(
       output prot
   );
 endinterface
+
+/*verilator coverage_on*/

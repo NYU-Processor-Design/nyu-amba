@@ -1,16 +1,18 @@
+/*verilator coverage_off*/
+
 /**
   @brief Common signals for a single-manager AMBA 5 APB Interface
-  
+
   @note See https://developer.arm.com/documentation/ihi0011/a/AMBA-APB
         and Ch 1 and 2 of AMBA APB Protocol Spec.
-  
+
   @param DataWidth    bit-width of data transfers
   @param AddrWidth    bit-width of addresses
   @param PrphNum      number of peripherals
-  
-  @input clk      clock
-  @input nReset   active-low-reset
-  
+
+  @input clk          clock
+  @input nReset       active-low-reset
+
   @logic addr         byte address of the transfer
   @logic prot         protection control signal (access type information)
   @logic selectors    selector bus for the peripherals, each lane is one prph
@@ -23,12 +25,12 @@
   @logic slvError     transfer error, high/error low/okay
  */
 interface APBCommon_if #(
-  AddrWidth = 32,
-  DataWidth = 32,
-  PrphNum = 1
+    AddrWidth = 32,
+    DataWidth = 32,
+    PrphNum   = 1
 ) (
-  input clk,
-  input nReset
+    input clk,
+    input nReset
 );
   logic [AddrWidth - 1:0] addr;
   logic [3:0] prot;
@@ -42,15 +44,17 @@ interface APBCommon_if #(
   logic slvError;
 
   modport bridge(
-    input clk,
-    input nReset,
-    input rData,
+      input clk,
+      input nReset,
+      input rData,
 
-    output selectors,
-    output enable,
-    output addr,
-    output write,
-    output wData
+      output selectors,
+      output enable,
+      output addr,
+      output write,
+      output wData
   );
 
 endinterface
+
+/*verilator coverage_on*/
