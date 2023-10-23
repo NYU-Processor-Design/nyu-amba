@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
   "name": "nyu-amba",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "NYU Processor Design's AMBA Implementation",
   "homepage": "https://github.com/NYU-Processor-Design/nyu-amba",
   "maintainers": [
@@ -25,7 +25,7 @@
     "registries": [
       {
         "kind": "git",
-        "baseline": "ec0eb061c19c705d36baf1b594ce6f1c64d05028",
+        "baseline": "b50c901de7499b65f1f7773f4790de3e18b62755",
         "repository": "https://github.com/NYU-Processor-Design/nyu-registry.git",
         "packages": [
           "nyu-*"

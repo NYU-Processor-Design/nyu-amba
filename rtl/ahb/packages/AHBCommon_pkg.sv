@@ -1,5 +1,4 @@
 `ifndef AHB_COMMON_PKG
-
 `define AHB_COMMON_PKG
 
 package AHBCommon_pkg;
@@ -37,4 +36,4 @@ package AHBCommon_pkg;
 
 endpackage
 
-`endif
+`endif  // AHB_COMMON_PKG

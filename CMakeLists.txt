@@ -22,7 +22,7 @@ if(DEFINED VCPKG_ROOT_DIR)
   )
 endif()
 
-project(nyu-amba VERSION 0.0.3)
+project(nyu-amba VERSION 0.1.0)
 
 find_package(nyu-cmake CONFIG REQUIRED)
 
