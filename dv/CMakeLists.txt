@@ -10,6 +10,10 @@ if(TEST_AHB OR TEST_ALL)
   add_subdirectory(ahb)
 endif()
 
+if(TEST_GENERIC OR TEST_ALL)
+  add_subdirectory(generic)
+endif()
+
 nyu_link_sv(tests PRIVATE amba)
 nyu_target_verilate(tests
   TOP_MODULES ${TOP_MODULES}

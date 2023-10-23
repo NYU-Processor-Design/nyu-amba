@@ -1,4 +1,4 @@
-#include <VSimpleDecoder_tl.h>
 #include <catch2/catch_test_macros.hpp>
+#include <VSimpleDecoder_tl.h>
 
-TEST_CASE("Dummy Test SimpleDecoder") {}
+TEST_CASE("SimpleDecoder, Dummy Test") {}

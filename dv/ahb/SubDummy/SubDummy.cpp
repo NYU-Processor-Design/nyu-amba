@@ -1,20 +1,20 @@
-#include <VSubDummy_tl.h>
 #include <catch2/catch_test_macros.hpp>
+#include <VSubDummy_tl.h>
 
-void clock(VSubDummy_tl &dut) {
+void clock(VSubDummy_tl& dut) {
   dut.clk = 0;
   dut.eval();
   dut.clk = 1;
   dut.eval();
 }
 
-TEST_CASE("Init") {
+TEST_CASE("SubDummy, Init") {
   VSubDummy_tl dut;
   dut.eval();
   REQUIRE(1 == 1);
 }
 
-TEST_CASE("Single read write") {
+TEST_CASE("SubDummy, Single read write") {
   VSubDummy_tl dut;
   dut.control = 0;
   dut.sel = 1;

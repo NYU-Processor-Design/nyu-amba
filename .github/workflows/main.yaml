@@ -1,11 +1,11 @@
 name: Test-Modules
 
-on: 
+on:
   push:
-    branches: 
+    branches:
       - main
   pull_request:
-    branches: 
+    branches:
       - main
 
 jobs:
@@ -30,6 +30,7 @@ jobs:
       - name: Test & Generate Coverage
         run: |
           ctest -C Release --output-on-failure
+          sed -i -e '/\/share\//d' -e '/\/dv\//d' dv/*.dat
           verilator_coverage -write-info coverage.txt dv/*.dat
 
       - name: Upload Coverage
@@ -37,3 +38,4 @@ jobs:
         with:
           files: ./coverage.txt
           fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}

@@ -1,5 +1,5 @@
 target_sources(tests PRIVATE SimpleDecoder_tb.cpp)
-nyu_add_sv(amba
+nyu_add_sv(tests
   SimpleDecoder_tl.sv
 )
 list(APPEND TOP_MODULES SimpleDecoder_tl)
