@@ -8,6 +8,7 @@ set(TOP_MODULES "")
 
 if(TEST_AHB OR TEST_ALL)
   add_subdirectory(ahb)
+  add_subdirectory(apb)
 endif()
 
 if(TEST_GENERIC OR TEST_ALL)

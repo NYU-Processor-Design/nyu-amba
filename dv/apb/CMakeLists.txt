@@ -1,0 +1,3 @@
+add_subdirectory(GPIO)
+
+set(TOP_MODULES ${TOP_MODULES} PARENT_SCOPE)
