@@ -33,7 +33,7 @@ TEST_CASE("SubDummy Unslected") {
   dut.sel = 0;
   dut.nReset = 0;
   dut.trans = 0;
-  clock(dut);
+  nyu::tick(dut);
   REQUIRE(dut.resp == 0);
   REQUIRE(dut.readyOut == 1);
 }
@@ -45,36 +45,36 @@ TEST_CASE("SubDummy Sequential Transfer with busy cycles") {
   dut.sel = 1;
   dut.nReset = 0;
   dut.trans = 0;
-  clock(dut);
+  nyu::tick(dut);
   //Write address 0x0
   dut.nReset = 1;
   dut.addr = 0x0;
   dut.wData = 0x1234;
   dut.write = 1;
   dut.trans = 2;
-  clock(dut);
+  nyu::tick(dut);
   //Write address 0x1
   REQUIRE(dut.resp == 0);
   dut.addr = 0x1;
   dut.wData = 0x5678;
   dut.trans = 3;
-  clock(dut);
+  nyu::tick(dut);
   //Write address 0x2 with busy cycle
   REQUIRE(dut.resp == 0);
   dut.addr = 0x2;
   dut.wData = 0x9abc;
   dut.trans = 1;
-  clock(dut);
+  nyu::tick(dut);
   //Manager continues but subordinate stalls
   REQUIRE(dut.resp == 0);
   dut.trans = 3;
   dut.control = 1;
-  clock(dut);
+  nyu::tick(dut);
   //Manager holds values as subordinate reasserts readyOut
   REQUIRE(dut.resp == 0);
   REQUIRE(dut.readyOut == 0);
   dut.control = 0;
-  clock(dut);
+  nyu::tick(dut);
   //Complete transferns read address 0x0
   REQUIRE(dut.resp == 0);
   REQUIRE(dut.readyOut == 1);
@@ -83,20 +83,20 @@ TEST_CASE("SubDummy Sequential Transfer with busy cycles") {
   dut.addr = 0x0;
   dut.trans = 2;
   dut.control = 0;
-  clock(dut);
+  nyu::tick(dut);
   //Complete transferns read address 0x1
   REQUIRE(dut.resp == 0);
   REQUIRE(dut.readyOut == 1);
   REQUIRE(dut.rData == 0x1234);
   dut.trans = 3;
   dut.addr = 0x1;
-  clock(dut);
+  nyu::tick(dut);
   //Complete transferns read address 0x2
   REQUIRE(dut.resp == 0);
   REQUIRE(dut.readyOut == 1);
   REQUIRE(dut.rData == 0x5678);
   dut.addr = 0x2;
-  clock(dut);
+  nyu::tick(dut);
   //Complete transferns read address 0x3
   REQUIRE(dut.resp == 0);
   REQUIRE(dut.readyOut == 1);
@@ -110,10 +110,10 @@ TEST_CASE("SubDummy Idle state") {
   dut.sel = 1;
   dut.nReset = 0;
   dut.trans = 0;
-  clock(dut);
+  nyu::tick(dut);
   dut.nReset = 1;
-  clock(dut);
-  clock(dut);
+  nyu::tick(dut);
+  nyu::tick(dut);
   REQUIRE(dut.resp == 0);
   REQUIRE(dut.readyOut == 1);
 }
@@ -125,7 +125,7 @@ TEST_CASE("SubDummy Error Resolution") {
   dut.sel = 1;
   dut.nReset = 0;
   dut.trans = 0;
-  clock(dut);
+  nyu::tick(dut);
   //Set SubDummy to trigger an error
   dut.nReset = 1;
   dut.trans = 2;
@@ -133,14 +133,14 @@ TEST_CASE("SubDummy Error Resolution") {
   dut.wData = 0x1234;
   dut.addr = 0x0;
   dut.control = 2;
-  clock(dut);
+  nyu::tick(dut);
   //SubDummy should respond with an error and not process anything. 
   //Set transfer to idle to resolve error
   REQUIRE(dut.resp == 1);
   REQUIRE(dut.readyOut == 0);
   dut.control = 0;
   dut.trans = 0;
-  clock(dut);
+  nyu::tick(dut);
   //SubDummy should be ready to process again
   REQUIRE(dut.resp == 0);
   REQUIRE(dut.readyOut == 1);
