@@ -19,13 +19,13 @@
     "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg-configuration.schema.json",
     "default-registry": {
       "kind": "git",
-      "baseline": "830f86fb309ad7167468a433a890b7415fbb90a5",
+      "baseline": "e56312cb3d33be09ec550ade6ffbb8dc18d23cfd",
       "repository": "https://github.com/microsoft/vcpkg.git"
     },
     "registries": [
       {
         "kind": "git",
-        "baseline": "b50c901de7499b65f1f7773f4790de3e18b62755",
+        "baseline": "7a6b61ca47ca041f1c6558c649cbc2ddbf11d57a",
         "repository": "https://github.com/NYU-Processor-Design/nyu-registry.git",
         "packages": [
           "nyu-*"
