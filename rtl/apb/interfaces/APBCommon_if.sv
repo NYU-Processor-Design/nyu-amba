@@ -22,7 +22,7 @@
   @logic strb         write strobe
   @logic ready        indicates completion of previous transfer
   @logic rData        read data from peripherals to mux
-  @logic slvError     transfer error, high/error low/okay
+  @logic subError     transfer error, high/error low/okay
  */
 interface APBCommon_if #(
     AddrWidth = 32,
@@ -41,7 +41,7 @@ interface APBCommon_if #(
   logic [DataWidth/8 - 1:0] strb;
   logic ready;
   logic [DataWidth - 1:0] rData;
-  logic slvError;
+  logic subError;
 
   modport bridge(
       input clk,
