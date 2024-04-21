@@ -54,17 +54,19 @@ interface APBCommon_if #(
       output write,
       output wData
   );
-  
+
     modport manager(
     input addr,          
-    input prot,                     
-    output selectors,       
-    output enable,                        
-    inout wData,       
-    inout strb,   
+    input prot,
     input ready,                       
-    inout rData,       
-    input subError
+    input rData,       
+    input subError,
+                         
+    output selectors,       
+    output enable, 
+    output write,                       
+    output wData,       
+    output strb
   );
 
 endinterface
