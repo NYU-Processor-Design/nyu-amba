@@ -17,7 +17,7 @@ TEST_CASE("SimpleDecoder, Basic Functionality") {
     decoder->clk = 1;
     decoder->eval();
 
-    //test for addresses 1 to 20
+    //test for addresses 1 to 3
     for (int address = 1; address <= 3; ++address) {
         int expected_sel = 1 << (address - 1);
 
