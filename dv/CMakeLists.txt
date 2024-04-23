@@ -17,7 +17,7 @@ endif()
 nyu_link_sv(tests PRIVATE amba)
 nyu_target_verilate(tests
   TOP_MODULES ${TOP_MODULES}
-  ARGS COVERAGE
+  ARGS COVERAGE TRACE_FST
 )
 
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain nyu::covrecorder)
