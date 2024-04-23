@@ -19,7 +19,7 @@ jobs:
           pacman --noconfirm -S cmake ninja git curl zip unzip tar verilator
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Configure
         run: cmake . -G Ninja -DNYU_BUILD_TESTS=TRUE
@@ -34,7 +34,7 @@ jobs:
           verilator_coverage -write-info coverage.txt dv/*.dat
 
       - name: Upload Coverage
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           files: ./coverage.txt
           fail_ci_if_error: true
