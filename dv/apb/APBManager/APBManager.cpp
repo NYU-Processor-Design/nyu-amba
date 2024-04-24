@@ -53,7 +53,7 @@ TEST_CASE("APBManager, logical assigns"){
     VAPBManager_tl& bm {nyu::getDUT<VAPBManager_tl>()};
     nyu::reset(bm);
     for (std::uint8_t i {0}; i < 2; ++i) {
-        for (std::uint8_t j {0}; i < 2; ++j) {
+        for (std::uint8_t j {0}; j < 2; ++j) {
             bm.mgr_wEn = i;
             bm.mgr_rEn = j;
             nyu::eval(bm);
