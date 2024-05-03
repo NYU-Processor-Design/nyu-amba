@@ -55,9 +55,9 @@ interface APBCommon_if #(
       output wData
   );
 
-    modport manager(
+  modport manager(
     input addr,          
-    input prot,
+    input prot,  // Shouldn't this be output?
     input ready,                       
     input rData,       
     input subError,
@@ -67,6 +67,20 @@ interface APBCommon_if #(
     output write,                       
     output wData,       
     output strb
+  );
+
+  modport subordinate(  // Double-check w/ Vito
+    input addr, 
+    input selectors,       
+    input enable, 
+    input write,              
+    input wData,       
+    input strb,
+ 
+    output prot,    // Shouldn't this be input?
+    output ready,                       
+    output rData,       
+    output subError
   );
 
 endinterface
