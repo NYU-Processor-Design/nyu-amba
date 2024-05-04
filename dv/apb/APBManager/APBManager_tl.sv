@@ -20,15 +20,19 @@ module APBManager_tl #(
     output logic mgr_busy,
 
     // Bus signals
-    input [AddrWidth - 1:0] bus_addr,          
-    input [ProtWidth - 1:0] bus_prot,
+    // assigns values to it c++ - input to sv model
+    // read values from it c++ - output to sv model
+
+             
     input bus_ready,                       
     input [DataWidth - 1:0] bus_rData,       
     input bus_subError,
                          
-    output logic [PrphNum - 1:0] bus_selectors,       
+    output logic [PrphNum - 1:0] bus_selectors,
+    output [ProtWidth - 1:0] bus_prot,       
     output logic bus_enable, 
-    output logic bus_write,                       
+    output logic bus_write,
+    output [AddrWidth - 1:0] bus_addr,                        
     output logic [DataWidth - 1:0] bus_wData,       
     output logic [DataWidth/8 - 1:0] bus_strb,
 
@@ -49,12 +53,11 @@ module APBManager_tl #(
     mgr.addr = mgr_addr;
     mgr.wData = mgr_wData;
     mgr.wStrb = mgr_wStrb;
+    mgr.prot = mgr_prot;
 
     mgr_rData = mgr.rData;
     mgr_error = mgr.error;
     mgr_busy = mgr.busy;
-
-    mgr.prot = mgr_prot;
   end
 
   APBCommon_if #(DataWidth, AddrWidth, PrphNum) bus (
@@ -68,12 +71,12 @@ module APBManager_tl #(
     bus_wData = bus.wData;
     bus_strb = bus.strb;
     bus_selectors = bus.selectors;
-
-    bus.addr = bus_addr;
+    bus_prot = bus.prot;
+    bus_addr = bus.addr;
+    
     bus.rData = bus_rData;
     bus.subError = bus_subError;
     bus.ready = bus_ready;
-    bus.prot = bus_prot;
   end
 
   APBManager bus_mgr (
@@ -84,4 +87,3 @@ module APBManager_tl #(
   );
 
 endmodule
-

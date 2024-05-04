@@ -57,11 +57,11 @@ interface APBCommon_if #(
 
   modport manager(
     input addr,          
-    input prot,  // Shouldn't this be output?
     input ready,                       
     input rData,       
     input subError,
-                         
+
+    output prot,                  
     output selectors,       
     output enable, 
     output write,                       
@@ -76,8 +76,8 @@ interface APBCommon_if #(
     input write,              
     input wData,       
     input strb,
- 
-    output prot,    // Shouldn't this be input?
+    input prot,  
+
     output ready,                       
     output rData,       
     output subError

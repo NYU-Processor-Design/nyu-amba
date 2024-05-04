@@ -22,8 +22,8 @@ module APBSubordinate #(
 
   always_comb begin
     if (bus.selectors) begin
-      device.wEn  = bus.enable & bus.write;
-      device.rEn  = bus.enable & !bus.write;
+      device.wEn  = bus.enable && bus.write;
+      device.rEn  = bus.enable && !bus.write;
       device.addr = bus.addr - BaseAddr;
     end else begin
       device.wEn  = 0;
