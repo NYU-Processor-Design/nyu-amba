@@ -55,6 +55,34 @@ interface APBCommon_if #(
       output wData
   );
 
+  modport manager(
+    input addr,          
+    input ready,                       
+    input rData,       
+    input subError,
+
+    output prot,                  
+    output selectors,       
+    output enable, 
+    output write,                       
+    output wData,       
+    output strb
+  );
+
+  modport subordinate(  // Double-check w/ Vito
+    input addr, 
+    input selectors,       
+    input enable, 
+    input write,              
+    input wData,       
+    input strb,
+    input prot,  
+
+    output ready,                       
+    output rData,       
+    output subError
+  );
+
 endinterface
 
 /*verilator coverage_on*/
